@@ -1,0 +1,246 @@
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <title>Network Attack Prediction</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Style.css')}}">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+      <style>
+          body{
+              #background: #4d0026;
+              background: linear-gradient(to left, #667292 0%, #a2b9bc 100%);
+          }
+
+          footer a{
+            color: #fff;
+          }
+          footer a:hover{
+            color: #fff;
+          }
+          .centerdiv{
+            height: 15vh;
+            display: flex;
+            #justify-content: center;
+            align-items: center;
+          }
+          .centerdiv a{
+            height: 30px;
+            width: 30px;
+            background-color: #f5f6fa;
+            border-radius: 50px;
+            text-align: center;
+            margin: 5px;
+            line-height: 30px;
+            #box-shadow: 1px 4px 2px 2px #dcdde1;
+            position: relative;
+            overflow: hidden;
+          }
+          .centerdiv a i{
+            transition: all 0.3s linear;
+          }
+          .centerdiv a:hover i{
+            transform: scale(1.5);
+            color: #f5f6fa;
+          }
+          .centerdiv a:before{
+            content: "";
+            width: 120%; height: 120%;
+            position: absolute;
+            top: 90%; left: -50%;
+            background-color: #00a8ff;
+            transform: rotate(60deg);
+          }
+
+          .centerdiv a:hover:before{
+            animation: socialicons 0.8s 1;
+            animation-fill-mode: forwards;
+          }
+          @keyframes socialicons {
+
+            0%{ top: 90%; left: -50%;}
+            50%{ top: -60%; left: -10%;}
+            100%{ top: -10%; left: -10%}
+          }
+
+          .fa-facebook-f{
+            color: #e84393;
+          }
+          .fa-instagram{
+            color: #e84393;
+          }
+          .fa-github{
+            color: #e84118;
+          }
+          .fa-linkedin{
+            color: #0097e6;
+          }
+          .fa-twitter{
+            color: #0097e6;
+          }
+      </style>
+
+    </head>
+
+    <body>
+
+     
+      <br>
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <!--Title-->
+         <a class="navbar-brand" href="#">Network Intrusion Detection System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="source">Source code</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="Contact" >Contact Us</a>
+            </li>
+<!--
+            p Down Menu
+                     <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+              
+            </li>
+         
+          </form> -->
+        </div>
+      </nav>
+
+
+
+     <div class="wrapper">
+       <div class="container my-5">
+         <div class="row">
+           <div class="col-md-10 col-sm-6 mx-auto">
+             <form class="" action="/predict" method="post">
+
+	               <div class="form-group">
+                 <input type="text" name="src_bytes" id="src_bytes" class="form-control" required>
+                 <label for="src_bytes" class="ph-area">src_bytes</label>
+
+                 <input type="text" name="dst_bytes" id="dst_bytes" class="form-control" required>
+                 <label for="dst_bytes" class="ph-area">dst_bytes</label>
+
+                 
+                 <input type="text" name="hot" id="hot" class="form-control" required>
+                 <label for="hot" class="ph-area">hot</label>
+
+                 
+
+                 
+                 <input type="text" name="log_in" id="log_in" class="form-control" required>
+                 <label for="log_in" class="ph-area">log_in</label>
+
+                 
+                 <input type="text" name="count" id="count" class="form-control" required>
+                 <label for="count" class="ph-area">count</label>
+
+                 <input type="text" name="serror_rate" id="serror_rate" class="form-control" required>
+                 <label for="serror_rate" class="ph-area">serror_rate</label>
+
+
+                 <input type="text" name="dst_host_same_srv_rate" id="dst_host_same_srv_rate" class="form-control" required>
+                 <label for="dst_host_same_srv_rate" class="ph-area">dst_host_same_srv_rate</label>
+
+                 <input type="text" name="dst_host_srv_diff_host_rate" id="dst_host_srv_diff_host_rate" class="form-control" required>
+                 <label for="dst_host_srv_diff_host_rate" class="ph-area">dst_host_srv_diff_host_rate</label>
+
+
+                 
+                 <input type="text" name="dst_host_srv_serror_rate" id="dst_host_srv_serror_rate" class="form-control" required>
+                 <label for="dst_host_srv_serror_rate" class="ph-area">dst_host_srv_serror_rate</label>
+
+                 
+                 <input type="text" name="last_flag" id="last_flag" class="form-control" required>
+                 <label for="last_flag" class="ph-area">last_flag</label>
+
+                 
+                 
+
+                 
+
+
+
+
+
+
+
+
+               <div class="form-group">
+                 <select class="form-control" name="protocol_type" required="required">
+                   <option value="tcp">TCP</option>
+                   <option value="udp">UDP</option>
+		   <option value="icmp">ICMP</option>
+                 </select>
+                 <label for="protocol_type" class="ph-area">Protocol Type</label>
+               </div>
+               <input type="text" name="service" id="service" class="form-control" required>
+               <label for="service" class="ph-area">service</label>
+
+               <input type="text" name="flag" id="flag" class="form-control" required>
+               <label for="flag" class="ph-area">Flag</label>
+
+
+
+               <div class="form-group">
+                <select class="form-control" name="model" required="required">
+                  
+                  <option value="logistic">Logistic Regression</option>
+                  <option value="Adaboost">Adaboost</option>
+                  <option value="SVC">SVC</option>
+      
+      <option value="XGBoost">XGBoost</option>
+      <option value="Catboost">Catboost</option>
+      <option value="Gradboost">Gradboost</option>
+      <option value="ANN">Artificial Neural Network</option>
+      <option value="DecisionTree">DecisionTree</option>
+      <option value="RandomForest">Random Forest</option>
+      
+                </select>
+                <label for="model class="ph-area">Select ML Model</label>
+              </div>
+
+
+               
+
+
+
+              
+             <div class="form-group">
+               <input type="submit" class="btn btn-primary" value="Submit">
+               <input type="reset" class="btn btn-danger" value="Reset">
+             </div>
+           </form>
+           </div>
+         </div>
+       </div>
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+
+  </html>
